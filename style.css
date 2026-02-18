@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+
+}
+
+body{
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+    background: linear-gradient(gold,yellow,gray);
+    height:110vh;
+    margin-top:0PX;
+
+}
+fieldset{
+    background-color: darkkhaki;
+    margin: 100px;
+    width: 500px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 30px 20px 10px rgba(232, 149, 192, 0.5);
+}
+input{
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+button{
+    background-color:skyblue;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+}
+
+p>a{
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+}
+p>a:hover{
+    color: blueviolet;
+}
+form{
+    background-color: gold;
+    border-radius: 6px;
+    border: none;
+    margin-top: 0px;
+}
+header{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.doc{
+    margin-right: 70px;
+}
+.mok{
+  color: black;
+  font-size: 30px;
+}
+ h1>span{ 
+    margin-right: 30px;
+    display: flex;
+} 

@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <title>SIMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+    <fieldset>
+        <header>
+            <h1 class="data">📶SIMS</h1>
+            <div class="mok">
+                 |
+            </div>
+            <P class="doc">Stock Investory
+                Managment System
+            </P>
+            
+        </header>
+        <section>
+        <form onsubmit="RegisterAccount(event)" >
+            <h1>create New Account</h1>
+            <p>__________________________</p>
+            <label>👤FullName</label><br>
+            <input type="text" id="fullname" placeholder="👤enter your fullname" required><br>
+            <label>✉️Email Address</label><br>
+            <input type="email" id="email" placeholder="✉️enteryour email" required><br>
+            <label>🔒password</label><br>
+            <input type="password" id="password" placeholder="🔒create a password" required><br>
+            <label>🔒Confirm password</label><br>
+            <input type="password" id="confirmPassword" placeholder="🔒Confirm your password" required><br>
+            <button type="submit" >Register Account</a></button>
+            <p>________________________________</p>
+            <p>Already have an account ? <a href="login.html">Login</a></p>
+        </form>
+        </section>
+    </fieldset>
+    </center>
+    <script>
+function RegisterAccount(event) {
+    event.preventDefault(); // Guhagarika form kudasubira hejuru
+
+    // Fata values
+    let fullname = document.getElementById("fullname").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Reba niba password zihuye
+    if (password !== confirmPassword) {
+        alert("Passwords do not match ❌");
+        return;
+    }
+
+    // Bika user muri localStorage
+    localStorage.setItem("userFullName", fullname);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    alert("Account Created Successfully ✅");
+
+    // Jya kuri login page
+    window.location.href = "login.html";
+}
+
+    </script>
+      
+</body>
+</html>

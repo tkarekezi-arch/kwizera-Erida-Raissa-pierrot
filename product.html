@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>product</title>
+    <link rel="stylesheet" href="product.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h3>Add New Product</h3>
+
+      <input type="text" id="pid" placeholder="Product ID" />
+      <input type="text" id="pname" placeholder="Product Name" />
+      <input type="text" id="pcategory" placeholder="Category" />
+      <input type="number" id="pquantity" placeholder="Quantity" />
+      <input type="number" id="pprice" placeholder="Price" />
+
+      <button onclick="addProduct()">Add Product</button>
+
+      <!-- TABLE -->
+      <table id="productTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      function addProduct() {
+        let id = document.getElementById("pid").value;
+        let name = document.getElementById("pname").value;
+        let category = document.getElementById("pcategory").value;
+        let quantity = document.getElementById("pquantity").value;
+        let price = document.getElementById("pprice").value;
+
+        if (
+          id === "" ||
+          name === "" ||
+          category === "" ||
+          quantity === "" ||
+          price === ""
+        ) {
+          alert("Please fill all fields!");
+          return;
+        }
+
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+        products.push({ id, name, category, quantity, price });
+
+        localStorage.setItem("products", JSON.stringify(products));
+
+        displayProducts();
+
+        document.getElementById("pid").value = "";
+        document.getElementById("pname").value = "";
+        document.getElementById("pcategory").value = "";
+        document.getElementById("pquantity").value = "";
+        document.getElementById("pprice").value = "";
+      }
+
+      function displayProducts() {
+        let tableBody = document
+          .getElementById("productTable")
+          .getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = ""; // Clear table
+
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+        products.forEach((product, index) => {
+          let newRow = tableBody.insertRow();
+          newRow.insertCell(0).innerHTML = product.id;
+          newRow.insertCell(1).innerHTML = product.name;
+          newRow.insertCell(2).innerHTML = product.category;
+          newRow.insertCell(3).innerHTML = product.quantity;
+          newRow.insertCell(4).innerHTML = product.price;
+          newRow.insertCell(5).innerHTML =
+            `<button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>`;
+        });
+      }
+
+      function deleteProduct(index) {
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        products.splice(index, 1);
+        localStorage.setItem("products", JSON.stringify(products));
+        displayProducts();
+      }
+      window.onload = displayProducts;
+    </script>
+  </body>
+</html>
