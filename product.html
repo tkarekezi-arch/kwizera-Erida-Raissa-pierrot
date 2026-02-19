@@ -1,96 +1,38 @@
-<html>
-  <head>
-    <title>product</title>
-    <link rel="stylesheet" href="product.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h3>Add New Product</h3>
 
-      <input type="text" id="pid" placeholder="Product ID" />
-      <input type="text" id="pname" placeholder="Product Name" />
-      <input type="text" id="pcategory" placeholder="Category" />
-      <input type="number" id="pquantity" placeholder="Quantity" />
-      <input type="number" id="pprice" placeholder="Price" />
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>product</title>
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+  <div class="products-container">
 
-      <button onclick="addProduct()">Add Product</button>
+    <!-- 20 Product Cards -->
+    <div class="product-card"><h3>Wireless Mouse</h3><p>Category: Electronics</p><p>$25</p><button>View</button></div>
+    <div class="product-card"><h3>Keyboard</h3><p>Category: Electronics</p><p>$45</p><button>View</button></div>
+    <div class="product-card"><h3>Laptop Stand</h3><p>Category: Accessories</p><p>$30</p><button>View</button></div>
+    <div class="product-card"><h3>USB Cable</h3><p>Category: Electronics</p><p>$10</p><button>View</button></div>
+    <div class="product-card"><h3>Headphones</h3><p>Category: Audio</p><p>$60</p><button>View</button></div>
+    <div class="product-card"><h3>Monitor</h3><p>Category: Electronics</p><p>$200</p><button>View</button></div>
+    <div class="product-card"><h3>Webcam</h3><p>Category: Accessories</p><p>$50</p><button>View</button></div>
+    <div class="product-card"><h3>Flash Drive</h3><p>Category: Storage</p><p>$15</p><button>View</button></div>
+    <div class="product-card"><h3>External HDD</h3><p>Category: Storage</p><p>$120</p><button>View</button></div>
+    <div class="product-card"><h3>Tablet</h3><p>Category: Electronics</p><p>$300</p><button>View</button></div>
 
-      <!-- TABLE -->
-      <table id="productTable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <script>
-      function addProduct() {
-        let id = document.getElementById("pid").value;
-        let name = document.getElementById("pname").value;
-        let category = document.getElementById("pcategory").value;
-        let quantity = document.getElementById("pquantity").value;
-        let price = document.getElementById("pprice").value;
+    <div class="product-card"><h3>Printer</h3><p>Category: Office</p><p>$150</p><button>View</button></div>
+    <div class="product-card"><h3>Scanner</h3><p>Category: Office</p><p>$140</p><button>View</button></div>
+    <div class="product-card"><h3>Desk Chair</h3><p>Category: Furniture</p><p>$180</p><button>View</button></div>
+    <div class="product-card"><h3>Office Desk</h3><p>Category: Furniture</p><p>$250</p><button>View</button></div>
+    <div class="product-card"><h3>Router</h3><p>Category: Networking</p><p>$90</p><button>View</button></div>
+    <div class="product-card"><h3>Switch</h3><p>Category: Networking</p><p>$110</p><button>View</button></div>
+    <div class="product-card"><h3>Projector</h3><p>Category: Electronics</p><p>$400</p><button>View</button></div>
+    <div class="product-card"><h3>Smartphone</h3><p>Category: Electronics</p><p>$500</p><button>View</button></div>
+    <div class="product-card"><h3>Power Bank</h3><p>Category: Accessories</p><p>$35</p><button>View</button></div>
+    <div class="product-card"><h3>Bluetooth Speaker</h3><p>Category: Audio</p><p>$75</p><button>View</button></div>
 
-        if (
-          id === "" ||
-          name === "" ||
-          category === "" ||
-          quantity === "" ||
-          price === ""
-        ) {
-          alert("Please fill all fields!");
-          return;
-        }
+</div>
 
-        let products = JSON.parse(localStorage.getItem("products")) || [];
-
-        products.push({ id, name, category, quantity, price });
-
-        localStorage.setItem("products", JSON.stringify(products));
-
-        displayProducts();
-
-        document.getElementById("pid").value = "";
-        document.getElementById("pname").value = "";
-        document.getElementById("pcategory").value = "";
-        document.getElementById("pquantity").value = "";
-        document.getElementById("pprice").value = "";
-      }
-
-      function displayProducts() {
-        let tableBody = document
-          .getElementById("productTable")
-          .getElementsByTagName("tbody")[0];
-        tableBody.innerHTML = ""; // Clear table
-
-        let products = JSON.parse(localStorage.getItem("products")) || [];
-
-        products.forEach((product, index) => {
-          let newRow = tableBody.insertRow();
-          newRow.insertCell(0).innerHTML = product.id;
-          newRow.insertCell(1).innerHTML = product.name;
-          newRow.insertCell(2).innerHTML = product.category;
-          newRow.insertCell(3).innerHTML = product.quantity;
-          newRow.insertCell(4).innerHTML = product.price;
-          newRow.insertCell(5).innerHTML =
-            `<button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>`;
-        });
-      }
-
-      function deleteProduct(index) {
-        let products = JSON.parse(localStorage.getItem("products")) || [];
-        products.splice(index, 1);
-        localStorage.setItem("products", JSON.stringify(products));
-        displayProducts();
-      }
-      window.onload = displayProducts;
-    </script>
-  </body>
+</body>
 </html>

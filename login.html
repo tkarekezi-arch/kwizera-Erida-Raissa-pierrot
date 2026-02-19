@@ -25,32 +25,13 @@
             <input type="email" id="email" placeholder="✉️enteryour email" required><br>
             <label>🔒password</label><br>
             <input type="password" id="password" placeholder="🔒create a password" required><br>
-            <button onclick="login" type="submit">LOGIN</a></button>
+            <button onclick="username()" type="submit">LOGIN</a></button>
             <p>________________________________</p>
             <p>Don't have an account ?<a href="register.html">Register</a></p>
         </form>
         </section>
     </fieldset>
     </center>
-   <script>
-    function login(event) {
-    event.preventDefault();
-
-    
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    let savedEmail = localStorage.getItem("userEmail");
-    let savedPassword = localStorage.getItem("userPassword");
-
-    if (email === savedEmail && password === savedPassword) {
-        alert("Login Successful ✅");
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Invalid Email or Password ❌");
-    }
-}
-
-   </script>
+   <script src="login.js"></script>
 </body>
 </html>

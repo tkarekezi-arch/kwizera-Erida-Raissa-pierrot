@@ -1,201 +1,83 @@
+
 <html>
-    <head>
-        <title>SIMS-dashboard</title>
-        <link rel="stylesheet" href="dashboard.css">
-    </head>
-    <body class="body">
-        
-        <header>
+<head>
+    <title>SIMS-dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
 
-       <div>
+<body>
 
-      <h1>SIMS</h1>
-      <P>Stock Investory Managment System</P>
-     </div>
-     <div>
-        <h1>welcome user</h1>
-        <p><button>hy ok!!!</button></p>
-
-    <button onclick="logout()" style="background-color: brown;color: gold;border: none;border-radius: 5px;padding: 10px;cursor: pointer;">
-    LOG OUT
-</button>
-
-     </div>
-     </header>
-     <body>
-        <section>
-     <aside class="man"><br><br><br><br>
-     <a class="over" href="dashboard.html"> dashboard</a><br><br><br>
-    <a class="over" href="product.html">product</a><br><br><br>
-     <a class="over" href="#">reports</a><br><br><br>
-     <a class="over" href="#">settings</a><br><br><br>
-</aside>
- <div>
-
-<div class="container">
-    <h1>Dashboard</h1>
-    <p>Overview of your inventory status</p>
-
-    <div class="cards">
-        <div class="card">
-            <p>Total Products</p>
-            <h2>248</h2>
-            <small>+12 this month</small>
-        </div>
-
-        <div class="card">
-            <p>In Stock</p>
-            <h2>205</h2>
-            <small>87.7% of total</small>
-        </div>
-
-        <div class="card">
-            <p>Out of Stock</p>
-            <h2>43</h2>
-            <small>17.3% of total</small>
-        </div>
+<header>
+    <div>
+        <h1>SIMS</h1>
+        <p>Stock Inventory Management System</p>
     </div>
-       
 
-       <div class="table-section">
- <h2>Product</h2>
-        <input type="search" placeholder="🔍search">
-        <table>
+    <div>
+        <span id="userName"></span>
+
+        <button onclick="logout()" 
+        style="background-color:brown;color:gold;border:none;border-radius:5px;padding:10px;cursor:pointer;">
+            LOG OUT
+        </button>
+    </div>
+</header>
+    <aside class="man">
+        <br><br><br><br>
+        <a class="over" href="dashboard.html">Dashboard</a><br><br><br>
+        <a class="over" href="product.html">Product</a><br><br><br>
+        <a class="over" href="#">Reports</a><br><br><br>
+        <a class="over" href="#">Settings</a><br><br><br>
+    </aside>
+
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p>Overview of your inventory status</p>
+
+        <div class="cards">
+            <div class="card">
+                <p>Total Products</p>
+                <h2 id="totalProducts">0</h2>
+            </div>
+
+            <div class="card">
+                <p>In Stock</p>
+                <h2 id="inStock">0</h2>
+            </div>
+
+            <div class="card">
+                <p>Out of Stock</p>
+                <h2 id="outStock">0</h2>
+            </div>
+        </div>
+
+        <h3>Add New Product</h3>
+
+        <input type="text" id="pid" placeholder="Product ID">
+        <input type="text" id="pname" placeholder="Product Name">
+        <input type="text" id="pcategory" placeholder="Category">
+        <input type="number" id="pquantity" placeholder="Quantity">
+        <input type="number" id="pprice" placeholder="Price">
+
+        <button onclick="addProduct()">Add Product</button>
+
+        <table id="productTable">
             <thead>
                 <tr>
-                    <th>Product ID</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Quantity</th>
-                    <th>Price ($)</th>
-                    <th>status</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
-
             <tbody>
-                <tr>
-                    <td>P001</td>
-                    <td>Laptop</td>
-                    <td>Electronics</td>
-                    <td>25</td>
-                    <td>800</td>
-                    <td>instock</td>
-                </tr>
-
-                <tr>
-                    <td>P002</td>
-                    <td>Office Chair</td>
-                    <td>Furniture</td>
-                    <td>40</td>
-                    <td>120</td>
-                    <td>instock</td>
-                </tr>
-
-                <tr>
-                    <td>P003</td>
-                    <td>Notebook</td>
-                    <td>Stationery</td>
-                    <td>140</td>
-                    <td>2</td>
-                    <td>instock</td>
-                </tr>
-
-                <tr>
-                    <td>P004</td>
-                    <td>Printer</td>
-                    <td>Electronics</td>
-                    <td>0</td>
-                    <td>250</td>
-                    <td>out of stock</td>
-                </tr>
-                <tr>
-                    <td>P005</td>
-                    <td>macbook</td>
-                    <td>Electronics</td>
-                    <td>100</td>
-                    <td>1000000</td>
-                    <td>in stock</td>
-                </tr>
-                <tr>
-                    <td>P006</td>
-                    <td>thinkbook</td>
-                    <td>Electronics</td>
-                    <td>90</td>
-                    <td>500000</td>
-                    <td>in stock</td>
-                </tr>
-                <tr>
-                    <td>P007</td>
-                    <td>hp</td>
-                    <td>Electronics</td>
-                    <td>80</td>
-                    <td>300000</td>
-                    <td>out of stock</td>
-                </tr>
-            </tbody>
         </table>
+
     </div>
 
-</div>
- </div>
- </body>
-<script>
-    const user = localStorage.getItem("loggedInUser");
-
-if(user){
-    document.getElementById("userName").textContent = user;
-
-    const names = user.split(" ");
-    let initials = "";
-    names.forEach(name => {
-        initials += name.charAt(0).toUpperCase();
-    });
-
-    document.getElementById("userInitials").textContent = initials;
-}
-function logout(){
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
-}
-function addProduct(){
-
-    const pid = document.getElementById("pid").value;
-    const pname = document.getElementById("pname").value;
-    const pcategory = document.getElementById("pcategory").value;
-    const pquantity = document.getElementById("pquantity").value;
-    const pprice = document.getElementById("pprice").value;
-
-    const table = document.querySelector("tbody");
-
-    const row = document.createElement("tr");
-
-    let status = "";
-    if(pquantity > 0){
-        status = `<button style="border:none;border-radius:6px;color:green;background-color:aliceblue;">In Stock</button>`;
-    } else {
-        status = `<button style="border:none;border-radius:6px;color:red;background-color:aliceblue;">Out of Stock</button>`;
-    }
-
-    row.innerHTML = `
-        <td>${pid}</td>
-        <td>${pname}</td>
-        <td>${pcategory}</td>
-        <td>${pquantity}</td>
-        <td>$${pprice}</td>
-        <td>${status}</td>
-    `;
-
-    table.appendChild(row);
-    document.getElementById("pid").value = "";
-    document.getElementById("pname").value = "";
-    document.getElementById("pcategory").value = "";
-    document.getElementById("pquantity").value = "";
-    document.getElementById("pprice").value = "";
-}
-const username=localstorage.getElement("username")
-document.getElementById("result").innerHTML="administrator"+usrename;
-
-
-</script>
-    </body>
+<script src="dashboard.js"></script>
+</body>
 </html>
